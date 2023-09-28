@@ -1,0 +1,25 @@
+SELECT * from fortune_companies
+
+SELECT company_name
+FROM fortune_companies
+WHERE paid_time_off_days>14
+AND healthcare_benefits=1;
+
+SELECT industry, ROUND(AVG(revenue),1) as avg_revenue_billions
+FROM fortune_companies
+GROUP BY industry
+HAVING avg_revenue_billions>=100
+ORDER BY revenue asc;
+
+SELECT company_name, min(revenue)
+FROM fortune_companies
+WHERE industry = 'Energy';
+
+SELECT
+company_name, CASE 
+  WHEN avg_employee_tenure >= 8 THEN 'best workplace'
+  WHEN avg_employee_tenure >= 6 THEN 'passable'
+  ELSE 'null'
+END as best_workplace
+FROM fortune_companies
+WHERE industry='Finance';
